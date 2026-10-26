@@ -1,0 +1,113 @@
+[build-system]
+requires = ["uv_build>=0.9.26,<0.10.0"]
+build-backend = "uv_build"
+
+[project]
+name = "apb-pmultiqc"
+version = "0.1.0"
+description = "Generate pMultiQC reports from stored APB results through QPX"
+readme = "README.md"
+requires-python = ">=3.13"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+    { name = "Witold Wolski", email = "wew@fgcz.ethz.ch" },
+]
+dependencies = [
+    "apb-export @ git+https://github.com/anndata-omics-bridge/apb-export.git@33ae6a855df79197ed4efc0b6ba1d6ebbbc9bc33",
+    "apb2 @ git+https://github.com/anndata-omics-bridge/apb2.git@9c6b088b45000407a2b4066cd8b90e3c1d686059",
+    "apb-catalog @ git+https://github.com/anndata-omics-bridge/apb-catalog.git@abf7366780275ff953414b0841b9fa890cc62940",
+    "apb-fasta @ git+https://github.com/anndata-omics-bridge/apb-fasta.git@5830b080542ed59ec4e40d7ca65e590c5beafe2e",
+    "protein-fasta @ git+https://github.com/anndata-omics-bridge/protein-fasta.git@4048b16bcce895ca5d7a774d2ec0c11bb9bd34e2",
+    "prozor @ git+https://github.com/anndata-omics-bridge/prozor.git@ab7c41bdfbbe877d66236c5c33549b7747426ace",
+    "pmultiqc @ git+https://github.com/bigbio/pmultiqc.git@8829884d69d28d0d0a75086dec0bf7f45e381b4d",
+    "multiqc==1.35",
+    "cyclopts>=4,<5",
+    "loguru>=0.7,<1",
+]
+
+[project.scripts]
+apb-pmultiqc = "apb_pmultiqc.cli:main"
+
+[dependency-groups]
+dev = [
+    "polars>=1.43,<2",
+    "build>=1.3,<2",
+    "deptry>=0.24,<1",
+    "pre-commit>=4,<5",
+    "pyright==1.1.414",
+    "pytest>=9,<10",
+    "pytest-cov>=7,<8",
+    "ruff==0.16.10",
+    "twine>=6,<7",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+src = ["src", "tests", "scripts"]
+
+[tool.ruff.lint]
+select = [
+    "ANN",
+    "B",
+    "C4",
+    "C90",
+    "E4",
+    "E7",
+    "E9",
+    "F",
+    "I",
+    "PGH",
+    "PIE",
+    "RUF",
+    "SIM",
+    "UP",
+]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.pyright]
+include = ["src", "tests", "scripts"]
+venvPath = "."
+venv = ".venv"
+pythonVersion = "3.13"
+typeCheckingMode = "strict"
+reportImportCycles = "error"
+reportMissingTypeStubs = "error"
+reportUnnecessaryTypeIgnoreComment = "error"
+reportImplicitOverride = "error"
+enableTypeIgnoreComments = false
+
+[tool.pytest.ini_options]
+addopts = ["--strict-config", "--strict-markers", "-ra"]
+testpaths = ["tests"]
+pythonpath = ["."]
+xfail_strict = true
+
+[tool.coverage.run]
+branch = true
+source = ["apb_pmultiqc"]
+
+[tool.coverage.report]
+fail_under = 80
+show_missing = true
+skip_covered = true
+
+[tool.deptry]
+known_first_party = ["apb_pmultiqc", "scripts"]
+
+[tool.deptry.per_rule_ignores]
+# The application pins its entire APB stack and invokes MultiQC with its pMultiQC plugin.
+DEP002 = ["apb-catalog", "apb-fasta", "protein-fasta", "prozor", "multiqc", "pmultiqc"]
+
+[tool.uv]
+required-version = "==0.12.17"
+no-sources = true
+
+[tool.uv.build-backend]
+source-include = ["uv.lock", ".python-version", "docs/**", "Makefile", "scripts/**"]
