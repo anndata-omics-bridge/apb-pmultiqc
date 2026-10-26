@@ -28,6 +28,7 @@ _PACKAGES = (
     "prozor",
     "pmultiqc",
     "multiqc",
+    "pyopenms",
 )
 _PLOT_ERROR = re.compile(
     r"(?m)^.*\[(?:ERROR|CRITICAL)\].*$|"

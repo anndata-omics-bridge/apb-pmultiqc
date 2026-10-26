@@ -43,8 +43,10 @@ print("Isolated wheel owns its executable and matches all seven immutable Git pi
 
 def main() -> None:
     """Install exact locked dependencies, verify provenance and generate a real report."""
-    wheel = next((ROOT / "dist").glob("*.whl"))
-    with tarfile.open(next((ROOT / "dist").glob("*.tar.gz"))) as archive:
+    project = tomllib.loads((ROOT / "pyproject.toml").read_text())["project"]
+    stem = f"{project['name'].replace('-', '_')}-{project['version']}"
+    wheel = ROOT / "dist" / f"{stem}-py3-none-any.whl"
+    with tarfile.open(ROOT / "dist" / f"{stem}.tar.gz") as archive:
         names = archive.getnames()
         assert not any("__pycache__" in name or "/.venv/" in name for name in names)
         for required in ("uv.lock", ".python-version", "docs/dependencies.md", "scripts/smoke.py"):
