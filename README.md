@@ -29,7 +29,7 @@ The timeout bounds the MultiQC subprocess, in seconds (default 1800). Conversion
 
 ## Dependency provenance
 
-The initial lock uses the exact upstream commit from [pMultiQC PR #751](https://github.com/bigbio/pmultiqc/pull/751), fixing absent/all-null RT plots. That PR was open when this application was created; no installed reader is patched. The pinned APB revisions and deliberate upgrade process are in [dependency provenance](docs/dependencies.md).
+The lock uses a tested source commit containing [pMultiQC PR #751](https://github.com/bigbio/pmultiqc/pull/751), fixing absent/all-null RT plots. That PR remains open. The source pin also includes pyOpenMS 3.5 container compatibility for Linux ARM; no installed reader is patched. The pinned APB revisions and deliberate upgrade process are in [dependency provenance](docs/dependencies.md).
 
 ## Development
 
@@ -42,4 +42,4 @@ make check-full
 
 `make check` covers lock consistency, Ruff, strict Pyright, dependency declarations, synthetic end-to-end reports and distribution validation. `make check-full` also installs the locked runtime dependencies and built wheel into a fresh environment outside the checkout, verifies all seven Git pins and generates a report there. CI runs the full gate from this repository alone. No external vendor fixtures or corpus runs are needed.
 
-Generated from the workspace Python package Copier template. MIT license; initial application version 0.1.0. Report generation belongs here; QPX serialization remains in [APB Export](https://github.com/anndata-omics-bridge/apb-export), and the separately locked [web UI](https://github.com/anndata-omics-bridge/apb-export-ui) is unchanged.
+Generated from the workspace Python package Copier template. MIT license; application version 0.1.1. Report generation belongs here; QPX serialization remains in [APB Export](https://github.com/anndata-omics-bridge/apb-export), and the separately locked [web UI](https://github.com/anndata-omics-bridge/apb-export-ui) is unchanged.

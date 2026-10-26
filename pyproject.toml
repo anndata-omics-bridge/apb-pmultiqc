@@ -4,7 +4,7 @@ build-backend = "uv_build"
 
 [project]
 name = "apb-pmultiqc"
-version = "0.1.0"
+version = "0.1.1"
 description = "Generate pMultiQC reports from stored APB results through QPX"
 readme = "README.md"
 requires-python = ">=3.13"
@@ -20,7 +20,8 @@ dependencies = [
     "apb-fasta @ git+https://github.com/anndata-omics-bridge/apb-fasta.git@5830b080542ed59ec4e40d7ca65e590c5beafe2e",
     "protein-fasta @ git+https://github.com/anndata-omics-bridge/protein-fasta.git@4048b16bcce895ca5d7a774d2ec0c11bb9bd34e2",
     "prozor @ git+https://github.com/anndata-omics-bridge/prozor.git@ab7c41bdfbbe877d66236c5c33549b7747426ace",
-    "pmultiqc @ git+https://github.com/bigbio/pmultiqc.git@8829884d69d28d0d0a75086dec0bf7f45e381b4d",
+    "pmultiqc @ git+https://github.com/wolski/pmultiqc.git@ae84c631650faa91c40dd0212289c26002c0c4b7",
+    "pyopenms==3.5.0",
     "multiqc==1.35",
     "cyclopts>=4,<5",
     "loguru>=0.7,<1",
@@ -103,7 +104,7 @@ known_first_party = ["apb_pmultiqc", "scripts"]
 
 [tool.deptry.per_rule_ignores]
 # The application pins its entire APB stack and invokes MultiQC with its pMultiQC plugin.
-DEP002 = ["apb-catalog", "apb-fasta", "protein-fasta", "prozor", "multiqc", "pmultiqc"]
+DEP002 = ["apb-catalog", "apb-fasta", "protein-fasta", "prozor", "multiqc", "pmultiqc", "pyopenms"]
 
 [tool.uv]
 required-version = "==0.12.17"
