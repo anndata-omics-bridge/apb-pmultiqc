@@ -85,7 +85,7 @@ dependencies = [
 [[package]]
 name = "apb-export"
 version = "0.1.0"
-source = { git = "https://github.com/anndata-omics-bridge/apb-export.git?rev=817825a56985c0ade764233ea5d621a8e32a248f#817825a56985c0ade764233ea5d621a8e32a248f" }
+source = { git = "https://github.com/anndata-omics-bridge/apb-export.git?rev=134fedbf8ce50d0eddba478bfaa54d79fbb8fdaa#134fedbf8ce50d0eddba478bfaa54d79fbb8fdaa" }
 dependencies = [
     { name = "apb-catalog" },
     { name = "apb-fasta" },
@@ -145,7 +145,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "apb-catalog", git = "https://github.com/anndata-omics-bridge/apb-catalog.git?rev=f40edc03d2407cb208e9ae3035a39bca9c5ecd49" },
-    { name = "apb-export", git = "https://github.com/anndata-omics-bridge/apb-export.git?rev=817825a56985c0ade764233ea5d621a8e32a248f" },
+    { name = "apb-export", git = "https://github.com/anndata-omics-bridge/apb-export.git?rev=134fedbf8ce50d0eddba478bfaa54d79fbb8fdaa" },
     { name = "apb-fasta", git = "https://github.com/anndata-omics-bridge/apb-fasta.git?rev=5830b080542ed59ec4e40d7ca65e590c5beafe2e" },
     { name = "apb2", git = "https://github.com/anndata-omics-bridge/apb2.git?rev=45ffc2c168156237c551ba7382538702c07bca9f" },
     { name = "cyclopts", specifier = ">=4,<5" },

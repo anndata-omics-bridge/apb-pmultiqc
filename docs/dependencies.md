@@ -4,7 +4,7 @@ The application uses immutable, remotely available APB commits selected at imple
 
 | Distribution | Commit |
 | --- | --- |
-| apb-export | [`817825a56985`](https://github.com/anndata-omics-bridge/apb-export/commit/817825a56985c0ade764233ea5d621a8e32a248f) |
+| apb-export | [`134fedbf8ce5`](https://github.com/anndata-omics-bridge/apb-export/commit/134fedbf8ce50d0eddba478bfaa54d79fbb8fdaa) |
 | apb2 | [`45ffc2c16815`](https://github.com/anndata-omics-bridge/apb2/commit/45ffc2c168156237c551ba7382538702c07bca9f) |
 | apb-catalog | [`f40edc03d240`](https://github.com/anndata-omics-bridge/apb-catalog/commit/f40edc03d2407cb208e9ae3035a39bca9c5ecd49) |
 | apb-fasta | [`5830b080542e`](https://github.com/anndata-omics-bridge/apb-fasta/commit/5830b080542ed59ec4e40d7ca65e590c5beafe2e) |
