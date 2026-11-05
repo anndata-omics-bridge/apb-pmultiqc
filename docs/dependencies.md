@@ -4,9 +4,9 @@ The application uses immutable, remotely available APB commits selected at imple
 
 | Distribution | Commit |
 | --- | --- |
-| apb-export | [`134fedbf8ce5`](https://github.com/anndata-omics-bridge/apb-export/commit/134fedbf8ce50d0eddba478bfaa54d79fbb8fdaa) |
-| apb2 | [`45ffc2c16815`](https://github.com/anndata-omics-bridge/apb2/commit/45ffc2c168156237c551ba7382538702c07bca9f) |
-| apb-catalog | [`f40edc03d240`](https://github.com/anndata-omics-bridge/apb-catalog/commit/f40edc03d2407cb208e9ae3035a39bca9c5ecd49) |
+| apb-export | [`d726e2b5c0d3`](https://github.com/anndata-omics-bridge/apb-export/commit/d726e2b5c0d3ab0b13b43d79dd0a2f2555bfc6e9) |
+| apb2 | [`46060ce8e259`](https://github.com/anndata-omics-bridge/apb2/commit/46060ce8e2596bef7d5ee2820c78f579f10ba94e) |
+| apb-catalog | [`0a9e5f5c8235`](https://github.com/anndata-omics-bridge/apb-catalog/commit/0a9e5f5c82357d3c377e45684ba1cecd98db7db0) |
 | apb-fasta | [`5830b080542e`](https://github.com/anndata-omics-bridge/apb-fasta/commit/5830b080542ed59ec4e40d7ca65e590c5beafe2e) |
 | protein-fasta | [`4048b16bcce8`](https://github.com/anndata-omics-bridge/protein-fasta/commit/4048b16bcce895ca5d7a774d2ec0c11bb9bd34e2) |
 | prozor | [`ab7c41bdfbbe`](https://github.com/anndata-omics-bridge/prozor/commit/ab7c41bdfbbe877d66236c5c33549b7747426ace) |
