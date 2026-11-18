@@ -36,3 +36,7 @@ Run from the repository root; Python tools use its synchronized virtual environm
 - Test synthetic reports for every supported APB format and available level. Do not weaken scientific assertions to accommodate an extraction or dependency error
 
 Planning belongs in the workspace TODO repository under this application's owner. No production deployment, publication to PyPI or corpus run is implied by this repository's gates.
+
+## Output style
+
+Every reply must follow the output style that `outputStyle` selects in [settings.json](/Users/wolski/.claude/settings.json), currently [Answer-first](/Users/wolski/.claude/output-styles/answer-first.md). Read that file if your harness does not load it. No exceptions for long, investigative or follow-up replies.
