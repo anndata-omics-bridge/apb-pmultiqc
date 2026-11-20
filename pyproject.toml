@@ -14,7 +14,7 @@ authors = [
     { name = "Witold Wolski", email = "wew@fgcz.ethz.ch" },
 ]
 dependencies = [
-    "apb-export @ git+https://github.com/anndata-omics-bridge/apb-export.git@7dd373a46d405782529497997f037226018a6e97",
+    "apb-export @ git+https://github.com/anndata-omics-bridge/apb-export.git@1b5592ea561cc04f7ed5fd3d85461a2efbf4329b",
     "apb2 @ git+https://github.com/anndata-omics-bridge/apb2.git@16d0399fcac3a8f023252ce60c35eac0e8de12a4",
     "apb-catalog @ git+https://github.com/anndata-omics-bridge/apb-catalog.git@4fd9c4abbdfbc533958ed00ae4cc910e594567ad",
     "apb-fasta @ git+https://github.com/anndata-omics-bridge/apb-fasta.git@60eecc3ce84993f9bcbc6d254351333a98803e7e",
