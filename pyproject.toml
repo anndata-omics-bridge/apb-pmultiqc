@@ -14,10 +14,10 @@ authors = [
     { name = "Witold Wolski", email = "wew@fgcz.ethz.ch" },
 ]
 dependencies = [
-    "apb-export @ git+https://github.com/anndata-omics-bridge/apb-export.git@d726e2b5c0d3ab0b13b43d79dd0a2f2555bfc6e9",
-    "apb2 @ git+https://github.com/anndata-omics-bridge/apb2.git@46060ce8e2596bef7d5ee2820c78f579f10ba94e",
-    "apb-catalog @ git+https://github.com/anndata-omics-bridge/apb-catalog.git@0a9e5f5c82357d3c377e45684ba1cecd98db7db0",
-    "apb-fasta @ git+https://github.com/anndata-omics-bridge/apb-fasta.git@5830b080542ed59ec4e40d7ca65e590c5beafe2e",
+    "apb-export @ git+https://github.com/anndata-omics-bridge/apb-export.git@7dd373a46d405782529497997f037226018a6e97",
+    "apb2 @ git+https://github.com/anndata-omics-bridge/apb2.git@16d0399fcac3a8f023252ce60c35eac0e8de12a4",
+    "apb-catalog @ git+https://github.com/anndata-omics-bridge/apb-catalog.git@4fd9c4abbdfbc533958ed00ae4cc910e594567ad",
+    "apb-fasta @ git+https://github.com/anndata-omics-bridge/apb-fasta.git@60eecc3ce84993f9bcbc6d254351333a98803e7e",
     "protein-fasta @ git+https://github.com/anndata-omics-bridge/protein-fasta.git@4048b16bcce895ca5d7a774d2ec0c11bb9bd34e2",
     "prozor @ git+https://github.com/anndata-omics-bridge/prozor.git@ab7c41bdfbbe877d66236c5c33549b7747426ace",
     "pmultiqc @ git+https://github.com/wolski/pmultiqc.git@ae84c631650faa91c40dd0212289c26002c0c4b7",
