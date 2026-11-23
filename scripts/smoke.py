@@ -14,30 +14,51 @@ from scripts.synthetic import stored_result
 ROOT = Path(__file__).resolve().parents[1]
 
 
+APB_PACKAGES = frozenset(
+    {"apb-export", "apb2", "apb-catalog", "apb-fasta", "protein-fasta", "prozor", "pmultiqc"}
+)
+
+
+def locked_requirements() -> bytes:
+    """The application's locked runtime requirements."""
+    return subprocess.check_output(
+        ["uv", "export", "--locked", "--no-dev", "--no-emit-project", "--no-hashes"], cwd=ROOT
+    )
+
+
 def installed_check() -> str:
-    """Build assertions runnable with only the installed environment and standard library."""
-    dependencies = tomllib.loads((ROOT / "pyproject.toml").read_text())["project"]["dependencies"]
-    expected = {
-        entry.split(" @ ")[0]: entry.rsplit("@", 1)[1]
-        for entry in dependencies
-        if " @ git+" in entry
-    }
+    """Build assertions runnable with only the installed environment and standard library: the
+    APB packages and pMultiQC installed as the lock pins them, by version or Git commit."""
+    expected: dict[str, tuple[str, str]] = {}
+    for line in locked_requirements().decode().splitlines():
+        entry = line.split(";", 1)[0].strip()
+        if " @ git+" in entry:
+            name, url = entry.split(" @ ", 1)
+            expected[name] = ("commit", url.rsplit("@", 1)[1])
+        elif "==" in entry:
+            name, version = entry.split("==", 1)
+            expected[name] = ("version", version)
+    expected = {name: pin for name, pin in expected.items() if name in APB_PACKAGES}
+    assert expected.keys() == APB_PACKAGES, expected
     return f"""
 import importlib.metadata as metadata
 import json
 import apb_pmultiqc
 expected = {expected!r}
-assert len(expected) == 7
-for name, revision in expected.items():
+for name, (kind, pin) in expected.items():
     distribution = metadata.distribution(name)
-    direct = json.loads(distribution.read_text("direct_url.json"))
+    origin = distribution.read_text("direct_url.json")
+    direct = json.loads(origin) if origin else {{}}
     assert not direct.get("dir_info", {{}}).get("editable", False), (name, direct)
-    assert direct["vcs_info"]["commit_id"] == revision, (name, direct)
+    if kind == "commit":
+        assert direct["vcs_info"]["commit_id"] == pin, (name, direct)
+    else:
+        assert distribution.version == pin, (name, distribution.version)
 owners = [d.metadata["Name"] for d in metadata.distributions() if any(
     e.name == "apb-pmultiqc" and e.group == "console_scripts" for e in d.entry_points)]
 assert owners == ["apb-pmultiqc"], owners
 assert {str(ROOT)!r} not in apb_pmultiqc.__file__, apb_pmultiqc.__file__
-print("Isolated wheel owns its executable and matches all seven immutable Git pins")
+print("Isolated wheel owns its executable and matches every locked APB and pMultiQC pin")
 """
 
 
@@ -56,12 +77,7 @@ def main() -> None:
         environment = folder / "venv"
         subprocess.run(["uv", "venv", "--python", "3.13", str(environment)], check=True)
         requirements = folder / "requirements.txt"
-        requirements.write_bytes(
-            subprocess.check_output(
-                ["uv", "export", "--locked", "--no-dev", "--no-emit-project", "--no-hashes"],
-                cwd=ROOT,
-            )
-        )
+        requirements.write_bytes(locked_requirements())
         python = environment / "bin/python"
         subprocess.run(
             [
